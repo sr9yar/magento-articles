@@ -41,3 +41,9 @@
 /var/package/*
 !/var/package/*.xml
 
+
+
+nginx/logs/access.log
+nginx/logs/error.log
+mysql/mysql
+

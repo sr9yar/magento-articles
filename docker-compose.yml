@@ -1,0 +1,59 @@
+version: '2'
+services:
+
+
+    mysql:
+
+        image: mysql:5.7
+        container_name: ma_mysql
+        restart: always
+
+        volumes:
+            - ./mysql/mysql:/var/lib/mysql
+            - ./mysql/conf.d:/etc/mysql/conf.d
+            - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+        expose:
+            - "3306"
+        ports:
+            - "3306:3306"
+
+        environment:
+            MYSQL_HOST: 127.0.0.1
+            MYSQL_DATABASE: root
+            MYSQL_USER: root
+            MYSQL_PASSWORD: root
+            MYSQL_ROOT_PASSWORD: root
+
+
+
+    app:
+
+        build: 
+            context: ./
+            dockerfile: Dockerfile
+            
+        container_name: ma_app
+        restart: always
+        links:
+            - mysql
+
+
+
+    nginx:
+
+        image: nginx:latest
+        container_name: ma_nginx
+        restart: always
+        working_dir: /app
+        ports:
+            - "80:80"
+            - "443:443"
+        volumes_from:
+            - app
+        volumes:
+            - ./nginx/conf.d:/etc/nginx/conf.d
+            - ./nginx/logs:/var/log/nginx
+            - ./nginx/ssl/private:/etc/ssl/private
+        links:
+            - app
+            - mysql

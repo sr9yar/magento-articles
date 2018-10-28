@@ -1,0 +1,4 @@
+#!/bin/sh
+docker stop ma_nginx ma_app ma_mysql
+docker ps
+

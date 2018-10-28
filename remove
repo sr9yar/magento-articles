@@ -1,0 +1,6 @@
+#!/bin/sh
+
+docker stop ma_app; docker rm ma_app
+docker stop ma_nginx; docker rm ma_nginx
+docker stop ma_mysql; docker rm ma_mysql
+docker rmi magento-articles_app
