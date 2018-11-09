@@ -27,3 +27,6 @@ Remove the project containers and app image (not pulled images):
 The resulting module code is in the `module` folder. 
 It is mounted into the corresponding folders during the container build.
 
+### Demo
+
+![demo](https://raw.githubusercontent.com/sr9yar/magento-articles/master/demo.gif "Demo")
