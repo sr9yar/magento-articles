@@ -1,0 +1,70 @@
+  <?php    $id = $this->checkArticleId(); 
+  
+  if ($id) {
+
+    $data = $this->getSingle($id)['data'];
+    $title =  $data[0]->getData('title');
+
+  } else {
+
+    $data = $this->getList()['data'];
+    $title = $this->getTitle()['heading'];
+  }
+
+  if (!$id) {
+    ?> 
+
+<a href="/articles" title="Articles">
+<h1>
+  <?php
+    echo $title;
+  ?> 
+</h1></a>
+
+  <?php } ?> 
+
+<div style="margin-bottom: 2rem;">
+
+<?php
+
+foreach( $data as $a  ){
+
+  if(
+    !!$a->getData('active')
+  ) {
+    ?>
+
+
+     <?php if ($id) {
+    ?> 
+
+<a href="/articles" title="Articles" style="color:gray; font-size: 0.75rem;">Go back
+</a>
+
+  <?php } ?> 
+
+  
+    <h2>
+      <a href="?article_id=<?php echo $a->getId();?>" title="<?php $a->getData('title');?>">
+        <?php echo $a->getData('title'); ?>
+      </a>
+</h2>
+
+
+
+   <div style="margin-bottom: 2rem;">
+     <img 
+     style="max-width:250px; border-radius: 4px; margin-left: 1rem; float:right;"
+     src="<?php echo $a->getData('image'); ?>" alt="image">
+
+   <?php echo $a->getData('text'); ?>
+</div>
+  <?php
+
+  }
+
+}
+?>
+
+</div>
+

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Vs7_Articles>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Vs7_Articles>
+    </modules>
+</config>

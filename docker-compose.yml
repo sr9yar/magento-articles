@@ -12,8 +12,6 @@ services:
             - ./mysql/mysql:/var/lib/mysql
             - ./mysql/conf.d:/etc/mysql/conf.d
             - ./mysql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
-        expose:
-            - "3306"
         ports:
             - "3306:3306"
 
@@ -25,15 +23,24 @@ services:
             MYSQL_ROOT_PASSWORD: root
 
 
-
     app:
 
         build: 
             context: ./
             dockerfile: Dockerfile
-            
+        volumes:
+            # - ./app/magento-mirror:/app/magento-mirror
+
+            - ./module/app/code/local/Vs7:/app/magento-mirror/app/code/local/Vs7
+            - ./module/app/design/adminhtml/default/default/layout/vs7_articles.xml:/app/magento-mirror/app/design/adminhtml/default/default/layout/vs7_articles.xml
+            - ./module/app/design/frontend/rwd/default/layout/vs7_articles.xml:/app/magento-mirror/app/design/frontend/rwd/default/layout/vs7_articles.xml
+            - ./module/app/design/frontend/rwd/default/template/vs7/articles/list.phtml:/app/magento-mirror/app/design/frontend/rwd/default/template/vs7/articles/list.phtml
+            - ./module/app/etc/modules/Vs7_Articles.xml:/app/magento-mirror/app/etc/modules/Vs7_Articles.xml
+
         container_name: ma_app
         restart: always
+        # ports:
+        #     - "9000:9000"
         links:
             - mysql
 
@@ -56,4 +63,4 @@ services:
             - ./nginx/ssl/private:/etc/ssl/private
         links:
             - app
-            - mysql
+

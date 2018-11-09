@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+     <default>
+          <reference name="content"></reference>
+      </default>
+
+			<articles_admin_index_index>
+				<reference name="content">
+					<block type="vs7_articles/adminhtml_index" name="vs7_articles_adminhtml_index" template="vs7/articles/index.phtml"/>
+				</reference>
+			</articles_admin_index_index>
+
+			<articles_admin_article_index>
+				<reference name="content">
+					<block type="vs7_articles/adminhtml_article" name="vs7_articles_adminhtml_article" template="vs7/articles/article.phtml"/>
+				</reference>
+			</articles_admin_article_index>
+
+
+</layout>
+

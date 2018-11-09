@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+     <default>
+          <reference name="content"></reference>
+      </default>
+
+      <articles_index_index>
+           <reference name="content">
+                <block type="vs7_articles/list"   name="articlelist_list" before="-" template="vs7/articles/list.phtml" />
+           </reference>
+      </articles_index_index>
+</layout>
